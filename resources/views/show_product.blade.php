@@ -12,5 +12,8 @@
     <p>Price: Rp.{{ $product->price }}</p>
     <p>stock: {{ $product->stock }}</p>
     <p>Description: {{ $product->description }}</p>
+    <form action="{{ route('edit_product', $product) }}" method="get">
+        <button type="submit">Edit Product</button>
+    </form>
 </body>
 </html>
