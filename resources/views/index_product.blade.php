@@ -7,12 +7,12 @@
 </head>
 <body>
     @foreach ($products as $product)
-        <p>Name: {{ $product->name }}</p>
-        <p>Description: {{ $product->description }}</p>
-        <p>RP. {{ $product->price }}</p>
-        <p>Stock: {{ $product->stock }}</p>
         <img src="{{ url('storage/'. $product->image) }}" alt="" height="100px">
+        <p>Name: {{ $product->name }}</p>
+        <p>RP. {{ $product->price }}</p>
+        <form action="{{ route('show_product', $product) }}" method="get">
+            <button type="submit">Show Detail</button>
+        </form>
     @endforeach
-    
 </body>
 </html>
