@@ -11,6 +11,7 @@
             <p>{{ $error }}</p>
         @endforeach
     @endif 
+    
     @foreach ($carts as $cart)
         <img src="{{ url('storage/' . $cart->product->image) }}" alt="" height="100px">
         <p>Name: {{ $cart->product->name }}</p>
