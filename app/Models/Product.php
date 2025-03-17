@@ -17,13 +17,19 @@ class Product extends Model
         'stock'
     ];
 
-    public function orders()
+    public function transactions()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->hasMany(Transaction::class);
     }
 
     public function carts()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function submit_payment_receipt(Order $order, Request $request)
+    {
+        $file = $request->file('payment_receipt');
+        
     }
 }

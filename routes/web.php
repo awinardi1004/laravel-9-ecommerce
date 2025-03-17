@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,13 @@ Route::patch('/product/{product}/update', [ProductController::class, 'update_pro
 Route::delete('/product/{product}',[ProductController::class, 'delete_product'])->name('delete_product');
 
 //cart
-Route::post('/cart/{product}', [CartController::class, 'add_to_cart'])->name('add_to_cart');
+Route::post('/cart/{product}', [CartController::class, 'add_to_cart']) ->middleware('auth')->name('add_to_cart');
 Route::get('/cart', [CartController::class, 'show_cart'])->name('show_cart');
 Route::patch('/cart/{cart}', [CartController::class, 'update_cart'])->name('update_cart');
 Route::delete('/cart/{cart}', [CartController::class, 'delete_cart'])->name('delete_cart');
+
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/order', [OrderController::class, 'index_order'])->name('index_order');
+Route::get('/order/{order}', [OrderController::class, 'show_order'])->name('show_order');
+Route::post('/order/{order}/pay', [OrderController::class, 'submit_payment_receipt'])->name('submit_payment_receipt');
+Route::post('/order/{order}/confirm', [OrderController::class, 'confirm_payment'])->name('confirm_payment');

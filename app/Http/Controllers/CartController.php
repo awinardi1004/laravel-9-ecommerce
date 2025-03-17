@@ -46,7 +46,7 @@ class CartController extends Controller
             ]);
         }
 
-        return Redirect::route('index_product');
+        return Redirect::route('show_cart');
     }
 
     public function show_cart()
