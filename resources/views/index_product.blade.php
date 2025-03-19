@@ -27,11 +27,13 @@
                                         <form action="{{ route('show_product', $product) }}" method="get">
                                             <button type="submit" class="btn btn-primary">Show Detail</button>
                                         </form>
+                                        @if (Auth::check() && Auth::user()->is_admin)
                                         <form action="{{ route('delete_product', $product) }}" method="post">
                                             @method('delete')
                                             @csrf
                                             <button type="submit" class="btn btn-danger mt-2">Delete Product</button>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

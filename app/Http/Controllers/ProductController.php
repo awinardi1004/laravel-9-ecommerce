@@ -28,7 +28,7 @@ class ProductController extends Controller
         $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
         Storage::disk('local')->put('public/'. $path, file_get_contents($file));
 
-        Product::create([
+        $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
@@ -36,7 +36,7 @@ class ProductController extends Controller
             'image' => $path
         ]);
 
-        return Redirect::route('create_product');
+        return Redirect::route('show_product', ['product' => $product->id]);
     }
 
     public function index_product()
